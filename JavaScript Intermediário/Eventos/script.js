@@ -67,10 +67,44 @@ function doisClicks(){
 }
 
 var contador;
-function apertouTecla(){
-    console.log("Apertou Tecla");
-    
+function apertouTecla(event){
+    console.log("Apertou Tecla: "+event.keyCode);
     contador=document.getElementById("inputId").value.length;
     document.getElementById("contadorId").innerHTML=contador;    
-    
 }
+
+function soltouTecla(event){
+    console.log("soltou Tecla: "+event.keyCode);
+}
+
+function pressionouTecla(event){
+    console.log("Pressionou Tecla: "+event.keyCode);
+}
+
+function pressionouTeclaEspecial(event){
+    console.log("Shift: "+event.shiftKey);
+    console.log("CTRL: "+event.ctrlKey);
+    console.log("Alt: "+event.altKey);
+    console.log("Meta: "+event.altKey);
+}
+
+function carregamentoPagina(event){
+    console.log("Página Carregada.");
+}
+
+function caixaSelecao(objeto){
+     console.log("Objeto: "+objeto.value);
+}
+
+function focou(){
+    console.log("Focou");
+}
+
+function perdeuFocu(){
+    console.log("Perdeu o focu");
+}
+
+function submitAtivado(){
+    console.log("Submit Ativado");
+}
+
