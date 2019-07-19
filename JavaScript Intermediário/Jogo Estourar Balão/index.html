@@ -1,47 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src='script.js'></script>
-</head>
-<body onload="carregamentoPagina" >   
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Page Title</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <script src='script.js'></script>
+        <style type="text/css">
+            .bola {
+                width: 50px;
+                height:50px;
+                background-color: #000;
+                border-radius: 25px;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body onload="iniciar()" >   
+        
 
-    <form method="POST" onsubmit="submitAtivado()">
-        <button onmousedown="apertouMouse()"> onMouseDown</button>
-        <button onmouseup="soltouMouse()"> onMouseUp</button>
-        <button onmouseover="passouMouse()"> onMouseOver</button>
-        <button onmouseout="tirouMouse()"> onMouseOut</button>
-        <button onmousemove="moveuMouse()">onMouseMove</button>
-        <button onclick="apertouBotao()">onClick</button>
-        <button oncontextmenu="return menuContexto()">onContextMenu</button>
-        <button ondblclick="doisClicks()">ondblClick</button>
-
-        <br/> <br/>
-
-        <input type="text" id="inputId" onkeydown="apertouTecla(event)"/>
-        <output id="contadorId">0</output>
-        <input type="text"   onkeyup="soltouTecla(event)" >
-        <input type="text"   onkeypress="pressionouTecla(event)"/>
-        <input type="text"   onkeydown="pressionouTeclaEspecial(event)"/>
-    
-        <br/> <br/>
-
-        <select onchange="caixaSelecao(this)">
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-            <option>D</option>
-            <option>E</option>
-            <option>F</option>
-        </select>
-
-        <input onfocus="focou()" onblur="perdeuFocu()"></input>
-
-        <br/> <br/>
-        <input type="submit" value="enviar"/>
-    </form>
-</body>
+    </body>
 </html>
