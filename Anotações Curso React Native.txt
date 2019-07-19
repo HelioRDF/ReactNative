@@ -1,0 +1,95 @@
+﻿Duas Formas de iniciar ambiente.
+
+
+- Installar o Node.JS.
+	Versão: <npm --version>
+
+
+- Instalar o Expo (-g indica que a instalação é global)
+	Instalar: <npm install -g expo-cli
+	Versão: <expo --version>
+	
+	* Criar conta no expo
+	Login: Helio_Franca
+	Email: HelioRdf@hotmail.com	
+	SCha:k17hdjueSd
+	
+	* logar no expo via CMD
+	Login CMD: < Expo login >
+	Logout CMD: < Expo logout >
+	
+	
+- Dica criar projetos na Raiz do HD em Windows, 
+nome de usuários com caracteres especiais costumam dar problemas.	
+
+- Iniciar um projeto com expo.
+	Novo Projeto: < expo init "Nome do Projeto" >
+	* Usar o template _Blank.
+	* Preencher informações.
+	Name: Nome visível do App
+	
+- Iniciar o aplicativo	
+Na pasta do projeto
+
+Start: < expo start > ou < npm start>
+
+- Yarn é um concorrente do NPM.
+- Instalar o expo no celular
+	
+- Instalar Pynthon 02 + JDK
+
+https://www.python.org/downloads/release/python-2716/
+	
+	
+- Instalar o React Native CLI
+< npm install -g react-native-cli >
+< react-native --version >
+
+- Instalar Android Studio
+Em android SDK instalar as dependencias necessárias.
+ * Instalar versão Android 9.0 em SDK Platforms 
+ * Instalar Android Emulator/Android SDK Platform-Tools/Android SDK Tools em SDK Tools fica em aba superior do dialog.
+
+ - Configurar variável de ambiente
+  * Criar uma variavel do sistem 
+  	Nome: ANDROID_HOME
+  	VALOR DA VARIÁVEL: C:\Users\helio.franca\AppData\Local\Android\Sdk
+  	Testar com o comando: echo %ANDROID_HOME%
+
+  	Nome: PATH
+  	Novo: C:\Users\helio.franca\AppData\Local\Android\Sdk\platform-tools
+
+
+
+- Iniciar Projeto React-Native
+	< react-native init PrimeiroRNProjeto >
+	- Or -
+	< react-native init PrimeiroRNProjeto --version 0.58.0 >
+
+	  Run instructions for iOS:
+    • cd PrimeiroRNProjeto && react-native run-ios
+    - or -
+    • Open PrimeiroRNProjeto\ios\PrimeiroRNProjeto.xcodeproj in Xcode or run "xed -b ios"
+    • Hit the Run button
+
+  Run instructions for Android:
+    • Have an Android emulator running (quickest way to get started), or a device connected.
+    • cd PrimeiroRNProjeto && react-native run-android
+
+	- Ver dispositivos disponiveis
+	< adb devices >
+
+	- Ambiente com processador AMD precisa ativar a virtualização do windows.
+
+	- Download GenyMotion+Virtual Box For Fun (Alternativa) 
+
+	- Start no projeto
+	< react-native run-android >
+
+	- Para rodar no celular
+	 * Ativar modo desenvolvedor
+	 * Ativar Depuração USB
+
+	 - Metro Bundler
+	 Abrir: < react-native start > 
+	 Fechar: CTRL + C

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='script.js'></script>
+</head>
+<body onload="gerarNumero()">
+    <h1>Lista:</h1>
+    <input id="inputIdUm">
+    <input id="inputIdDois">
+
+    <button onclick="executarOperacao(1)">+</button>
+    <button onclick="executarOperacao(2)">-</button>
+    <button onclick="executarOperacao(3)">x</button>
+    <button onclick="executarOperacao(4)">/</button>
+    <button onclick="limparUl()">Limpar</button>
+    
+    <ul id="listaId">
+    </ul>
+
+    </br>
+
+    <h2>Número:</h2>
+
+    <input id="palpiteId"/>
+    <output id="numRandomId"></output>
+    
+
+    <button onclick="conferirNumero()" >Conferir</button>
+
+    <output id="mensagemId" ></output>
+
+    
+</body>
+</html>
