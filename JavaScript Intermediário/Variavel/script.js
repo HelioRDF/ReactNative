@@ -1,5 +1,44 @@
+let meuArray = [1, 2, 3, 4, 5]
+
+function somar(valorAtual, incremento) {
+    return valorAtual + incremento;
+}
+
+function adicionar(...numeros) {
+    let total = numeros.reduce(somar);
+    console.log(total);
+}
+
+//Com Função anonima
+function adicionar02(...numeros) {
+    let total = numeros.reduce(function (x, y) {
+        return x + y;
+    });
+    console.log(total);
+}
+
+
+
+//Funçoes Arrow
+//Com Função anonima
+
+function adicionar03(...numeros) {
+    let total = numeros.reduce((x, y) => {
+        return x + y;
+    });
+    console.log(total);
+}
+
+function adicionar04(...numeros) {
+    let total = numeros.reduce((x, y) => x + y);
+    console.log(total);
+}
+
+
+adicionar(...meuArray);
+
 //Operador Spread
-let meuArray02 = ['A', 'B', 'C', 'D'];
+/*let meuArray02 = ['A', 'B', 'C', 'D'];
 let meuArray03 = [...meuArray02, 'E', 'F'];
 
 let info = {
@@ -13,6 +52,11 @@ function recebeInfo(objeto){
         cidade:'SP'
     }
     return objetoSpread;
+}
+
+//Operador Rest
+function adicionar(...nomes){
+    return [nomes]
 }
 
 console.log(recebeInfo(info));
@@ -49,7 +93,7 @@ function minhaFuncao(nome, idade) {
 
 
 
-/*var num = 1;
+var num = 1;
 const variavelConstante = 'Constante';
 let nome = 'Helio';
 let idade = 30;
