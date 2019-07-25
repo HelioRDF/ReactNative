@@ -93,3 +93,10 @@ Em android SDK instalar as dependencias necessárias.
 	 - Metro Bundler
 	 Abrir: < react-native start > 
 	 Fechar: CTRL + C
+
+
+	- Iniciar Servidor Node.Js
+
+		Digitar:
+		Cd "Pasta do projeto"
+		http-server
