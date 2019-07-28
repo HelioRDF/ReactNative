@@ -100,3 +100,22 @@ Em android SDK instalar as dependencias necessárias.
 		Digitar:
 		Cd "Pasta do projeto"
 		http-server
+
+	- importar webpack
+		<npm install webpack webpack-cli>
+
+
+		gerar arquivo main.js
+		<npx webpack> 
+
+	- Desinstalar pacotes NPM:
+		<npm uninstall Pacote>
+
+	- Instalar pacote NPM com versão
+		<npm install jquery@x.x.x>
+
+	- Instalar Yarn
+		iniciar yarn: <yarn init>
+		buscar módulo: <yarn add "Nome do módulo">	
+		apagar módulo: < yarn remove "Nome" >	
+		atualizar módulo: < yarn upgrade "Nome" >
