@@ -57,22 +57,22 @@ export default class PrimeiroProjeto extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { texto02:'',texto: 'Oi' , inputTexto:''};
+    this.state = { texto02: '', texto: 'Oi', inputTexto: '' };
     this.mudarTexto = this.mudarTexto.bind(this);
     this.apertouBotao = this.apertouBotao.bind(this);
   }
 
   mudarTexto(txt) {
     let stateAux = this.state;
-    stateAux.texto='Olá, '+txt;
+    stateAux.texto = 'Olá, ' + txt;
     this.setState(stateAux);
   }
   somar(n1, n2) {
     return n1 + n2;
   }
 
-  apertouBotao(){
-    let s=this.state;
+  apertouBotao() {
+    let s = this.state;
     s.texto02 = s.inputTexto;
     this.setState(s);
   }
@@ -86,9 +86,9 @@ export default class PrimeiroProjeto extends Component {
         <MeuTexto />
         <Text style={styles.textoAzul}>{nome}</Text>
         <TextInput style={styles.input} placeholder="Nome do usuário" onChangeText={this.mudarTexto} />
-        <Text style={styles.textoAzul}>{this.state.texto}</Text> 
+        <Text style={styles.textoAzul}>{this.state.texto}</Text>
 
-        <TextInput style={styles.input} placeholder="Nome do usuário"  onChangeText={(inputTexto)=>this.setState({inputTexto})} />
+        <TextInput style={styles.input} placeholder="Nome do usuário" onChangeText={(inputTexto) => this.setState({ inputTexto })} />
         <Button onPress={this.apertouBotao} title="Aperte aqui"></Button>
         <Text style={styles.textoAzul}>{this.state.texto02}</Text>
 
