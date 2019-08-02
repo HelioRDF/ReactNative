@@ -119,3 +119,16 @@ Em android SDK instalar as dependencias necessárias.
 		buscar módulo: <yarn add "Nome do módulo">	
 		apagar módulo: < yarn remove "Nome" >	
 		atualizar módulo: < yarn upgrade "Nome" >
+
+
+{ Navegação 
+	- React Navigation
+		Instalar: < npm install react-navigation --save >
+
+	- React Gesture Handler
+		Instalar: < npm install react-native-gesture-handler  --save >
+
+	- React Link (Linkar o projeto com as bibliotecas)
+		Instalar: < react-native Link >
+
+}
