@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
-import { createBottomTabNavigator,createStackNavigator,createAppContainer,   } from 'react-navigation';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 
 class Tela1 extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Tela1',
-        tabBarIcon: () => (
+        drawerLabel: 'Tela1',
+        drawerIcon: () => (
             <Image source={require('./assets/images/house.png')} style={styles.icon} />
         )
     }
@@ -21,8 +21,8 @@ class Tela1 extends Component {
 
 class Tela2 extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Tela2',
-        tabBarIcon: () => (
+        drawerLabel: 'Tela2',
+        drawerIcon: () => (
             <Image source={require('./assets/images/settings.png')} style={styles.icon} />
         )
     }
@@ -36,46 +36,25 @@ class Tela2 extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center',
-        marginTop:20
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20
     },
-    icon:{
-        width:26,
-        height:26
+    icon: {
+        width: 26,
+        height: 26
     }
 });
 
-const Navegador = createBottomTabNavigator({
-    Tela1:{
-        screen:Tela1
+const Navegador = createDrawerNavigator({
+    Tela1: {
+        screen: Tela1
     },
-    Tela2:{
-        screen:Tela2
+    Tela2: {
+        screen: Tela2
     }
-},
-
-{
-    tabBarPosition:'top',
-    animationEnabled:true,
-    initialRouteName:'Tela2',
-    order:['Tela2','Tela1'],
-    tabBarOptions:{
-        showIcon:true,
-        showLabel:true,
-        activeTintColor:'#FF0000',
-        inactiveTintColor:'#00FF00',
-        upperCaseLabel:false,
-        tabStyle:{
-            backgroundColor:'blue'
-        }
-     
-
-    }
-
 });
 
-const AppContainer = createAppContainer(Navegador);
-export default AppContainer;
+export default createAppContainer(Navegador);
