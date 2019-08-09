@@ -1,108 +1,74 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, TextInput, Button } from 'react-native';
-import Item from './src/Item';
+import { View, StyleSheet, Text, TextInput,Button } from 'react-native';
+import firebase from 'firebase';
 
-export default class TodoOnline extends Component {
 
+export default class ProjetoReact extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			lista:[],
-			input:''
+			nomeInput: '',
+			idadeInput: ''
 		};
 
-		this.url = 'https://b7web.com.br/todo/47440';
+		var firebaseConfig = {
+			apiKey: "AIzaSyBgPIZdqJpIR59-XpK-n2ibrOp6VRafELw",
+			authDomain: "testereact-f1f21.firebaseapp.com",
+			databaseURL: "https://testereact-f1f21.firebaseio.com",
+			projectId: "testereact-f1f21",
+			storageBucket: "",
+			messagingSenderId: "242612076354",
+			appId: "1:242612076354:web:2e4029c19e09485d"
+		  };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+		  this.inserirUsuario = this.inserirUsuario.bind(this);
 
-		this.loadLista = this.loadLista.bind(this);
-		this.addButton = this.addButton.bind(this);
+		  //Alterar		  
+		  firebase.database().ref('usuarios').child('2').child('Nome').set('Helio Franca');
 
-		this.loadLista();
+		  //Excluir
+		  firebase.database().ref('usuarios').child('2').child('Nome').remove();
+
+		   //inserir		  
+		   firebase.database().ref('usuarios').child('3').child('Nome').set('Helio Franca');
+
 	}
 
-	loadLista() {
-		fetch(this.url)
-			.then((r)=>r.json())
-			.then((json)=>{
-				let state = this.state;
-				state.lista = json.todo;
-				this.setState(state);
+	inserirUsuario(){
+		if(this.state.nomeInput.length > 0){
+			let usuarios = firebase.database().ref('usuarios');
+			let chave = usuarios.push().key;
+
+			usuarios.child(chave).set({
+				nome:this.state.nomeInput,
+				idade:this.state.idadeInput
 			});
-	}
-
-	addButton() {
-		let texto = this.state.input;
-
-		let state = this.state;
-		state.input = '';
-		this.setState(state);
-
-		fetch(this.url, {
-			method:'POST',
-			headers:{
-				'Accept':'application/json',
-				'Content-Type':'application/json'
-			},
-			body:JSON.stringify({
-				item:texto
-			})
-		})
-			.then((r)=>r.json())
-			.then((json)=>{
-
-				this.loadLista();
-			})
+		}
 	}
 
 	render() {
 		return (
 			<View style={styles.container}>
-				<View style={styles.addArea}>
-					<Text style={styles.addTxt}>Adicione uma nova tarefa</Text>
-					<TextInput style={styles.input} onChangeText={(text) => {
-						let state = this.state;
-						state.input = text;
-						this.setState(state);
-					}} value={this.state.input} />
-					<Button title="Adicionar" onPress={this.addButton} />
-				</View>
-				<FlatList 
-					data={this.state.lista}
-					renderItem={({item})=> <Item data={item} url={this.url} loadFunction={this.loadLista} />}
-					keyExtractor={(item, index)=>item.id}
-				/>
+				<Text>Nome:</Text>
+				<TextInput style={styles.input} onChangeText={(nomeInput) => this.setState({ nomeInput })} />
+				<Text>Idade:</Text>
+				<TextInput style={styles.input} onChangeText={(idadeInput) => this.setState({ idadeInput })} />
+				<Button title="Inserir" onPress={this.inserirUsuario} />
 			</View>
 		);
 	}
-
 }
 
 const styles = StyleSheet.create({
-	container:{
-		flex:1,
-		marginTop:20
+	container: {
+		flex: 1,
+		marginTop: 20
 	},
-	addArea:{
-		marginBottom:20,
-		backgroundColor:'#DDDDDD'
-	},
-	addTxt:{
-		fontSize:14,
-		textAlign:'center',
-		marginBottom:10,
-		marginTop:10
-	},
-	input:{
-		height:40,
-		backgroundColor:'#CCCCCC',
-		marginLeft:20,
-		marginRight:20,
-		paddingLeft:10,
-		paddingRight:10
+
+	input: {
+		height: 40,
+		borderWidth: 1,
+		borderColor: '#FF0000'
 	}
 });
-
-
-
-
-
-

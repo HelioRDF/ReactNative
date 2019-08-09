@@ -132,3 +132,9 @@ Em android SDK instalar as dependencias necessárias.
 		Instalar: < react-native Link >
 
 }
+
+apagar cache
+<react-native start --reset-cache>
+
+- FireBase
+	Instalação: < npm install --save firebase >
