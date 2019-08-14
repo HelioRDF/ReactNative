@@ -20,31 +20,14 @@ export default class ProjetoReact extends Component {
 			messagingSenderId: "242612076354",
 			appId: "1:242612076354:web:2e4029c19e09485d"
 		};
-		this.logar = this.logar.bind(this);
-		this.sair = this.sair.bind(this);
-
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
-		firebase.auth().signOut();
 
-		firebase.auth().onAuthStateChanged((user) => {
-
-			if (user) {
-				firebase.database().ref('usuarios').child(user.uid).once('value').then((snapshot) => {
-					let nome = snapshot.val().nome;
-					alert("Seja Bem Vindo(a), " + nome);
-				});
-
-				alert("Login true")
-			} else {
-				alert("login false")
-			}
-		});
-
+		this.cadastrar = this.cadastrar.bind(this);
 	}
 
-	logar() {
-		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha).catch((error) => {
+	cadastrar() {
+		firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha).catch((error) => {
 			switch (error.code) {
 				case 'auth/invalid-email':
 					alert("Informações inválidas");
@@ -59,16 +42,11 @@ export default class ProjetoReact extends Component {
 					break;
 
 				default:
-					alert("Error:" + error.code);
-					break;
+					alert("Error:"+error.code);
+				break;
 			}
+
 		});
-
-
-	}
-	sair() {
-		firebase.auth().signOut();
-		alert("Saiu...");
 
 	}
 
@@ -81,8 +59,7 @@ export default class ProjetoReact extends Component {
 				<Text>Senha</Text>
 				<TextInput secureTextEntry={true} onChangeText={(senha) => this.setState({ senha })} style={styles.input} />
 
-				<Button title='Logar' onPress={this.logar} />
-				<Button title='sair' onPress={this.sair} />
+				<Button title='Cadastrar' onPress={this.cadastrar} />
 			</View>
 
 		);

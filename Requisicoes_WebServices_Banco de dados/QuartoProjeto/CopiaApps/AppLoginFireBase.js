@@ -25,26 +25,19 @@ export default class ProjetoReact extends Component {
 
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
-		firebase.auth().signOut();
 
-		firebase.auth().onAuthStateChanged((user) => {
-
-			if (user) {
-				firebase.database().ref('usuarios').child(user.uid).once('value').then((snapshot) => {
-					let nome = snapshot.val().nome;
-					alert("Seja Bem Vindo(a), " + nome);
-				});
-
-				alert("Login true")
-			} else {
-				alert("login false")
+		firebase.auth().onAuthStateChanged((user)=>{
+			if(user){
+				alert("Login!!!") 
+			}else{
+				alert("Else!!!") 
 			}
 		});
 
 	}
 
 	logar() {
-		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha).catch((error) => {
+		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha).catch((error)=>{
 			switch (error.code) {
 				case 'auth/invalid-email':
 					alert("Informações inválidas");
@@ -59,14 +52,14 @@ export default class ProjetoReact extends Component {
 					break;
 
 				default:
-					alert("Error:" + error.code);
-					break;
+					alert("Error:"+error.code);
+				break;
 			}
 		});
 
 
 	}
-	sair() {
+	sair(){
 		firebase.auth().signOut();
 		alert("Saiu...");
 
