@@ -9,13 +9,9 @@ export default class ProjetoReact extends Component {
 		this.state = {
 			email: '',
 			senha: '',
-			novaSenha: '',
-			novoEmail: '',
 			uid: '',
-			lista: [],
-			addItemTxt: '',
-			mudarSenha: false,
-			mudarEmail: false,
+			lista:[],
+			addItemTxt:''
 
 		};
 		// Your web app's Firebase configuration
@@ -31,7 +27,6 @@ export default class ProjetoReact extends Component {
 		this.add = this.add.bind(this);
 		this.logar = this.logar.bind(this);
 		this.sair = this.sair.bind(this);
-		this.redefinir = this.redefinir.bind(this);
 
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
@@ -45,16 +40,6 @@ export default class ProjetoReact extends Component {
 				state.uid = user.uid;
 				this.setState(state);
 
-				if (this.state.mudarSenha == true) {
-					user.updatePassword(this.state.novaSenha);
-					alert("Senha Mudou de: " + user.senha + ", Para:" + this.state.novaSenha)
-					this.state.mudarSenha=false;
-				}
-
-				if (this.state.mudarEmail == true) {
-					user.updateEmail(this.state.novoEmail);
-				}
-
 				firebase.database().ref('usuarios').child(user.uid).once('value').then((snapshot) => {
 					let nome = snapshot.val().nome;
 					alert("Seja Bem Vindo(a), " + nome);
@@ -67,37 +52,50 @@ export default class ProjetoReact extends Component {
 						state.lista.push({
 							titulo: childItem.val().titulo,
 							key: childItem.key,
+
 						});
+
+
 					});
+
 					this.setState(state);
 				});
+
+
 				alert("Login true")
 			} else {
 				alert("login false")
 			}
 		});
+
 	}
+
 	logar() {
 		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha).catch((error) => {
 			switch (error.code) {
 				case 'auth/invalid-email':
 					alert("Informações inválidas");
 					break;
+
 				case '2':
 					alert("msg");
 					break;
+
 				case '3':
 					alert("msg");
 					break;
+
 				default:
 					alert("Error:" + error.code);
 					break;
 			}
 		});
-	}
+
+			}
 	sair() {
 		firebase.auth().signOut();
 		alert("Saiu...");
+
 	}
 	add() {
 		if (this.state.uid != '' && this.state.addItemTxt != '') {
@@ -107,15 +105,14 @@ export default class ProjetoReact extends Component {
 
 			todo.child(chave).set({
 				titulo: this.state.addItemTxt
+
 			});
+
+
 		}
 	}
 
-	redefinir() {
-		alert("redefinir");
-		this.logar();
-		this.state.mudarSenha=true;
-	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -125,21 +122,22 @@ export default class ProjetoReact extends Component {
 				<Text>Senha</Text>
 				<TextInput secureTextEntry={true} onChangeText={(senha) => this.setState({ senha })} style={styles.input} />
 
-				<Text>Nova Senha</Text>
-				<TextInput secureTextEntry={true} onChangeText={(novaSenha) => this.setState({ novaSenha })} style={styles.input} />
+				<Button title='Logar' onPress={this.logar} />
+				<Button title='sair' onPress={this.sair} />
 
-				<Button title='Trocar Senha' onPress={this.redefinir} style={styles.botao} />
+				<View style={styles.addArea}>
+					<Text>Adicionar</Text>
+					<TextInput value={this.state.addItemTxt} onChangeText={(addItemTxt) => this.setState({addItemTxt})} style={styles.input} />
+					<Button title="Adicionar" onPress={this.add}></Button>
 
-				<Button title='Logar' onPress={this.logar} style={styles.botao} />
+				</View>
 
-	
-	
-				<Button title='sair' onPress={this.sair} style={styles.botao} />
+				<FlatList
+					data={this.state.lista} renderItem={({ item }) => <Text>{item.titulo}</Text>} />
 			</View>
 
 		);
 	}
-
 }
 
 const styles = StyleSheet.create({
@@ -163,14 +161,5 @@ const styles = StyleSheet.create({
 	},
 	lista: {
 		backgroundColor: '#ff0000'
-	},
-	botao: {
-		padding: 20,
-		
-		marginBottom:20,
-		color:'red'
-		
-		,
-
 	}
 });

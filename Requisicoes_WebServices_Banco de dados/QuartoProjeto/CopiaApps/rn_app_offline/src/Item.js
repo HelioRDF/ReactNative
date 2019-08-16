@@ -15,6 +15,7 @@ export default class Item extends Component {
 		
 	marcar() {
 		let state = this.state;
+
 		let done = 'sim';
 
 		if(state.done == styles.undone) {
@@ -25,34 +26,13 @@ export default class Item extends Component {
 			done = 'nao';
 		}
 
-		fetch(this.props.url+'/'+this.props.data.id, {
-			method:'PUT',
-			headers:{
-				'Accept':'application/json',
-				'Content-Type':'application/json'
-			},
-			body:JSON.stringify({
-				done:done
-			})
-		})
-			.then((r)=>r.json())
-			.then((json)=>{});
-
 		this.setState(state);
+
+		this.props.onUpdate(this.props.data.id, done);
 	}
 
 	excluir() {
-		fetch(this.props.url+'/'+this.props.data.id, {
-			method:'DELETE',
-			headers:{
-				'Accept':'application/json',
-				'Content-Type':'application/json'
-			}
-		})
-			.then((r)=>r.json())
-			.then((json)=>{
-				this.props.loadFunction();
-			});
+		this.props.onDelete(this.props.data.id);
 	}
 
 	render(){
@@ -98,3 +78,14 @@ const styles = StyleSheet.create({
 		height:40
 	}
 });
+
+
+
+
+
+
+
+
+
+
+
