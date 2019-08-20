@@ -138,3 +138,33 @@ apagar cache
 
 - FireBase
 	Instalação: < npm install --save firebase >
+
+- baixar biblioteca para gerenciar camera/imagem	
+ < npm install react-native-image-picker@latest --save >
+
+
+ - Permissões de hardware android
+ Dentro do androidManifest.xml
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+Linkar
+após alterações realizar o link
+<react-native link>
+
+ - Permissões de hardware IOS 
+ Dentro de info.plist
+
+ 	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your camera</string>
+
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
+
+		<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your microphone</string>
+
+	após alterações realizar o link
+<react-native link>

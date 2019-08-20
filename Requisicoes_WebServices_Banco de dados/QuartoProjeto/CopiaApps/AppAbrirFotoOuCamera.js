@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet,Button,Image } from 'react-native';
-import firebase from './src/FirebaseConnection';
+import firebase from 'firebase';
 import ImagePicker from 'react-native-image-picker';
-import RNFetchBlob from 'react-native-fetch-blob';
-
-
-window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
-window.Blob = RNFetchBlob.polyfill.Blob;
-
 
 export default class ProjetoReact extends Component {
 
@@ -25,25 +19,10 @@ export default class ProjetoReact extends Component {
 		}
 		ImagePicker.showImagePicker(options, (r)=>{
 			if(r.uri){
-				let uri = r.uri.replace('file://','');
-				let imagem=firebase.storage().ref().child('imagem.jpg');
-				let mime= 'image/jpeg'
-
-				RNFetchBlob.fs.readFile(uri,'base64').then(()=>{
-					return RNFetchBlob.polyfill.Blob.build(data, {type:mime+';BASE64'});
-				}).then((blob)=>{
-					
-					imagem.put(blob,{contentType:mime}).then(()=>{
-						blob.close();
-						alert("Terminou o processo");
-
-						//URL da Imagem
-						let url=imagem.getDownloadURL();
-
-					}).catch((error)=>{
-						alert(error.code);
-					});
-				});
+				let foto = {uri:r.uri};
+				let state = this.state;
+				state.foto=foto;
+				this.setState(state);
 			}
 		});
 	}
